@@ -1,0 +1,15 @@
+{
+    "name": "inovia-team/matters-repository",
+    "description": "Matters' proposal on how to use zendframework/zend-db",
+    "type": "library",
+    "require": {
+        "zendframework/zend-db": "^2.9",
+        "zendframework/zend-hydrator": "^2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {"Matters\\": "src/"}
+    }
+}

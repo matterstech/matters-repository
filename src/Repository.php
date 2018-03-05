@@ -5,10 +5,12 @@
 
 namespace Matters;
 
+use Matters\Enums\FilterType;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\ResultSet\ResultSetInterface;
 use Zend\Db\Sql\Literal;
 use Zend\Db\Sql\Select;
+use Zend\Db\Sql\Where;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Hydrator\HydratorInterface;
 
@@ -116,5 +118,38 @@ abstract class Repository
         $results = $statement->execute();
 
         return $results->current()[self::COUNT_COLUMN];
+    }
+
+    /**
+     * @param \Zend\Db\Sql\Where $where
+     * @param array $filters
+     */
+    private function applyQueryFilters(Where $where, array $filters)
+    {
+        /** @var \Matters\ValueObjects\QueryFilter $filter */
+        foreach ($filters as $filter) {
+            switch ($filter->getType()) {
+                case FilterType::EQUAL_TO:
+                    $where->equalTo($filter->getField(), $filter->getValue());
+                    break;
+                case FilterType::GREATER_THAN:
+                    $where->greaterThan($filter->getField(), $filter->getValue());
+                    break;
+                case FilterType::GREATER_THAN_OR_EQUAL_TO:
+                    $where->greaterThanOrEqualTo($filter->getField(), $filter->getValue());
+                    break;
+                case FilterType::LESS_THAN:
+                    $where->lessThan($filter->getField(), $filter->getValue());
+                    break;
+                case FilterType::LESS_THAN_OR_EQUAL_TO:
+                    $where->lessThanOrEqualTo($filter->getField(), $filter->getValue());
+                    break;
+                case FilterType::LIKE:
+                    $where->like($filter->getField(), '%' . $filter->getValue() . '%');
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

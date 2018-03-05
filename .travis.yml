@@ -1,0 +1,27 @@
+language: php
+
+matrix:
+  include:
+    - php: 7.0
+    - php: 7.1
+    - php: nightly
+  allow_failures:
+    - php: nightly
+  fast_finish: true
+
+os:
+  - linux
+
+sudo: false
+
+cache:
+  directories:
+    - vendor/
+
+before_script:
+  - export PATH="$PATH:$HOME/.composer/vendor/bin"
+  - phpenv config-rm xdebug.ini || echo "ext-xdebug is not available, cannot remove it, but that's OK"
+
+script:
+  - composer install
+  - ./vendor/bin/phpunit tests

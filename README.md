@@ -6,9 +6,9 @@ Matters proposal usage of zend-repository
 ## Definition of a \Matters\Repository
 
 ```php
-<?php     
+<?php
     class TableRepository extends \Matters\Repository {
-        
+
         public function findAllByName(string $name)
         {
             $select = $this->select();
@@ -16,9 +16,9 @@ Matters proposal usage of zend-repository
                 ->equalTo([
                     'name'       => $name,
                 ]);
-            
+
             $select->order(['created_at' => 'DESC']);
-    
+
             return $this->fetchListEntities($select);
         }
     }
@@ -32,14 +32,20 @@ Matters proposal usage of zend-repository
         new Hydrator(),
         new Model()
     );
-    
+
     $tableGateway = new \Zend\Db\TableGateway\TableGateway(
         'table_name',
         new \Zend\Db\Adapter\Adapter($config),
         null,
         $hydratingResultSet
     );
-    
+
     $tableRepository = new TableRepository($tableGateway);
     $entities = $tableRepository->findAllByName('Bob');    
+```
+
+# Tests
+
+```php
+./vendor/bin/phpunit tests
 ```

@@ -123,8 +123,9 @@ abstract class Repository
     /**
      * @param \Zend\Db\Sql\Where $where
      * @param array $filters
+     * @return \Zend\Db\Sql\Where
      */
-    private function applyQueryFilters(Where $where, array $filters)
+    public function applyQueryFilters(Where $where, array $filters)
     {
         /** @var \Matters\ValueObjects\QueryFilter $filter */
         foreach ($filters as $filter) {
@@ -151,5 +152,7 @@ abstract class Repository
                     break;
             }
         }
+
+        return $where;
     }
 }

@@ -1,0 +1,8 @@
+parameters:
+  tasks:
+    jsonlint: ~
+    yamllint: ~
+    phplint: ~
+  ascii:
+    failed: ~
+    succeeded: ~

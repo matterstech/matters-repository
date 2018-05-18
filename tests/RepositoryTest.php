@@ -52,6 +52,7 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 0,
                     'less-than-or-equal-to-nb-calls'    => 0,
                     'like-nb-calls'                     => 0,
+                    'in-nb-calls'                       => 0,
                 ],
             ],
             [
@@ -65,6 +66,7 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 0,
                     'less-than-or-equal-to-nb-calls'    => 0,
                     'like-nb-calls'                     => 0,
+                    'in-nb-calls'                       => 0,
                 ],
             ],
             [
@@ -78,6 +80,7 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 0,
                     'less-than-or-equal-to-nb-calls'    => 0,
                     'like-nb-calls'                     => 0,
+                    'in-nb-calls'                       => 0,
                 ],
             ],
             [
@@ -91,6 +94,7 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 0,
                     'less-than-or-equal-to-nb-calls'    => 0,
                     'like-nb-calls'                     => 0,
+                    'in-nb-calls'                       => 0,
                 ],
             ],
             [
@@ -104,6 +108,7 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 1,
                     'less-than-or-equal-to-nb-calls'    => 0,
                     'like-nb-calls'                     => 0,
+                    'in-nb-calls'                       => 0,
                 ],
             ],
             [
@@ -117,6 +122,7 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 0,
                     'less-than-or-equal-to-nb-calls'    => 1,
                     'like-nb-calls'                     => 0,
+                    'in-nb-calls'                       => 0,
                 ],
             ],
             [
@@ -130,6 +136,7 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 0,
                     'less-than-or-equal-to-nb-calls'    => 0,
                     'like-nb-calls'                     => 1,
+                    'in-nb-calls'                       => 0,
                 ],
             ],
             [
@@ -144,6 +151,7 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 0,
                     'less-than-or-equal-to-nb-calls'    => 0,
                     'like-nb-calls'                     => 0,
+                    'in-nb-calls'                       => 0,
                 ],
             ],
             [
@@ -158,6 +166,21 @@ class RepositoryTest extends TestCase
                     'less-than-nb-calls'                => 1,
                     'less-than-or-equal-to-nb-calls'    => 0,
                     'like-nb-calls'                     => 1,
+                    'in-nb-calls'                       => 0,
+                ],
+            ],
+            [
+                [
+                    new QueryFilter('key', FilterType::IN, ['value']),
+                ],
+                [
+                    'equal-to-nb-calls'                 => 0,
+                    'greater-than-nb-calls'             => 0,
+                    'greater-than-or-equal-to-nb-calls' => 0,
+                    'less-than-nb-calls'                => 0,
+                    'less-than-or-equal-to-nb-calls'    => 0,
+                    'like-nb-calls'                     => 0,
+                    'in-nb-calls'                       => 1,
                 ],
             ],
         ];
@@ -195,6 +218,10 @@ class RepositoryTest extends TestCase
             ->shouldReceive('like')
             ->with('key', '%value%')
             ->times($nbCalls['like-nb-calls']);
+        $where
+            ->shouldReceive('in')
+            ->with('key', ['value'])
+            ->times($nbCalls['in-nb-calls']);
 
         self::assertSame($where, $this->testedInstance->applyQueryFilters($where, $filters));
     }

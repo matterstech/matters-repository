@@ -148,6 +148,9 @@ abstract class Repository
                 case FilterType::LIKE:
                     $where->like($filter->getField(), '%' . $filter->getValue() . '%');
                     break;
+                case FilterType::IN:
+                    $where->in($filter->getField(), $filter->getValue());
+                    break;
                 default:
                     break;
             }

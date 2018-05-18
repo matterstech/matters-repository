@@ -17,7 +17,7 @@ class QueryFilter
     /** @var string */
     private $type;
 
-    /** @var string */
+    /** @var mixed */
     private $value;
 
     /**

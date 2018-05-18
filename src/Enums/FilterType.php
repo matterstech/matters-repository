@@ -17,6 +17,7 @@ class FilterType
     const LESS_THAN                = 'lt';
     const LESS_THAN_OR_EQUAL_TO    = 'lte';
     const LIKE                     = 'like';
+    const IN                       = 'in';
 
     /**
      * Return query filter types
@@ -31,6 +32,7 @@ class FilterType
             self::LESS_THAN,
             self::LESS_THAN_OR_EQUAL_TO,
             self::LIKE,
+            self::IN,
         ];
     }
 }

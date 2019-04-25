@@ -7,8 +7,10 @@
         "zendframework/zend-hydrator": "^2.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0",
-        "mockery/mockery": "~0.9"
+        "jakub-onderka/php-parallel-lint": "^1.0",
+        "mockery/mockery": "~0.9",
+        "phpro/grumphp": "^0.14.0",
+        "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "psr-4": {"Matters\\": "src/"}

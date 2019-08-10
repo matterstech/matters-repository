@@ -49,9 +49,7 @@ abstract class Repository
      */
     protected function count() : Select
     {
-        return $this->select()->columns([
-            self::COUNT_COLUMN => new Literal('COUNT(1)')
-        ]);
+        return new Count($this->tableGateway->getTable());
     }
 
     /**
@@ -109,13 +107,13 @@ abstract class Repository
     }
 
     /**
-     * @param \Zend\Db\Sql\Select $select
+     * @param Count $select
      * @return int
      */
-    protected function fetchCount(Select $select)
+    protected function fetchCount(Count $select)
     {
-        $statement  = $this->tableGateway->getSql()->prepareStatementForSqlObject($select);
-        $results = $statement->execute();
+        $statement = $this->tableGateway->getSql()->prepareStatementForSqlObject($select);
+        $results   = $statement->execute();
 
         return $results->current()[self::COUNT_COLUMN];
     }

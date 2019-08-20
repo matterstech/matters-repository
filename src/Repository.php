@@ -121,6 +121,18 @@ abstract class Repository
     }
 
     /**
+     * @param Exists $select
+     * @return bool
+     */
+    protected function fetchExists(Exists $select)
+    {
+        $statement  = $this->tableGateway->getSql()->prepareStatementForSqlObject($select);
+        $result = $statement->execute();
+
+        return \count($result) > 0;
+    }
+
+    /**
      * @param \Zend\Db\Sql\Where $where
      * @param array $filters
      * @return \Zend\Db\Sql\Where

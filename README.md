@@ -1,4 +1,11 @@
 # matters-repository
+
+[![Build Status](https://travis-ci.org/matterstech/matters-repository.svg?branch=master)](https://travis-ci.org/matterstech/matters-repository)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/matterstech/matters-repository/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/matterstech/matters-repository/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/matterstech/matters-repository/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/matterstech/matters-repository/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/inovia-team/matters-repository/v/stable)](https://packagist.org/packages/inovia-team/matters-repository)
+[![License](https://poser.pugx.org/inovia-team/matters-repository/license)](https://packagist.org/packages/inovia-team/matters-repository)
+
 Matters proposal usage of zend-repository
 
 # Usage
